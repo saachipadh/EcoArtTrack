@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>8emmrIZ8gyqAFZdFVLVnr2vUKGT9puoRaHrBi7Mk6XA=_2</activeVersionIdentifier>
+    <description>Provides an AI summary of the project, its CO₂ performance, and related material usage.</description>
+    <developerName>Project_Record_Summary</developerName>
+    <masterLabel>Project Record Summary</masterLabel>
+    <relatedEntity>Project__c</relatedEntity>
+    <templateVersions>
+        <content>Summarize this project’s key information in clear, natural language. Include:
+
+- Project Name: {!$Input:Project__c.Name}
+- Description: {!$Input:Project__c.Description__c}
+- Status: {!$Input:Project__c.Status__c}
+- Goal CO₂ (kg): {!$Input:Project__c.Goal_CO2__c}
+- Total CO₂ Emitted (kg): {!$Input:Project__c.Total_CO2_Used__c}
+- CO₂ Saved (kg): {!$Input:Project__c.CO2_Saved__c}
+- Progress (%): {!$Input:Project__c.Progress_Percentage__c}
+
+Now summarize the related Usage records ({!$RelatedList:Project__c.Usage__r.Records}):
+For each usage, include:
+- Material
+- Quantity
+- CO₂ Emitted(kg)
+- Cost
+
+Then write 3–4 sentences summarizing:
+- Total CO₂ progress toward the goal
+- Whether emissions are improving or worsening
+- Key materials contributing most to CO₂ impact
+- Recommended next step (if goal not achieved)
+
+</content>
+        <inputs>
+            <apiName>objectToSummarize</apiName>
+            <definition>SOBJECT://Project__c</definition>
+            <referenceName>Input:Project__c</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Project__c.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Usage__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Project__c.Usage__r.Records</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>8emmrIZ8gyqAFZdFVLVnr2vUKGT9puoRaHrBi7Mk6XA=_1</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>Summarize this project’s key information in clear, natural language. Include:
+
+- Project Name: {!$Input:Project__c.Name}
+- Description: {!$Input:Project__c.Description__c}
+- Status: {!$Input:Project__c.Status__c}
+- Goal CO₂ (kg): {!$Input:Project__c.Goal_CO2__c}
+- Total CO₂ Emitted (kg): {!$Input:Project__c.Total_CO2_Used__c}
+- CO₂ Saved (kg): {!$Input:Project__c.CO2_Saved__c}
+- Progress (%): {!$Input:Project__c.Progress_Percentage__c}
+
+Now analyze the related Usage records ({!$RelatedList:Project__c.Usage__r.Records}) and provide a concise overall summary instead of listing each record. 
+Consider all usage data to describe:
+
+- The total amount of materials used and overall CO₂ emitted
+- Average CO₂ per usage and major contributing materials
+- General spending trend (high or low cost usage)
+- Overall environmental impact trend (improving or worsening)
+
+Finally, write 3–4 sentences summarizing:
+- Current progress toward the goal
+- Whether the project is on track or needs reduction actions
+- Key insights or recommendations to stay within CO₂ limits
+
+</content>
+        <inputs>
+            <apiName>objectToSummarize</apiName>
+            <definition>SOBJECT://Project__c</definition>
+            <referenceName>Input:Project__c</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Project__c.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Usage__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Project__c.Usage__r.Records</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>8emmrIZ8gyqAFZdFVLVnr2vUKGT9puoRaHrBi7Mk6XA=_2</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__recordSummary</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

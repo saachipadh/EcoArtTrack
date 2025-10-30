@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_CO2_Used__c</fullName>
+    <label>Total CO₂ Emitted</label>
+    <summarizedField>Usage__c.CO2_Used__c</summarizedField>
+    <summaryForeignKey>Usage__c.Project__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>8emmrIZ8gyqAFZdFVLVnr2vUKGT9puoRaHrBi7Mk6XA=_1</activeVersionIdentifier>
+    <description>Summarizes the project’s CO₂ emissions, progress, and goal performance.</description>
+    <developerName>Project_Summary</developerName>
+    <masterLabel>Project Summary</masterLabel>
+    <relatedEntity>Project__c</relatedEntity>
+    <relatedField>Project__c.Project_Summary__c</relatedField>
+    <templateVersions>
+        <content>Generate a short project summary (under 100 words) using the following details:
+
+- Project Name: {!$Input:Project__c.Name}
+- CO₂ Goal (kg): {!$Input:Project__c.Goal_CO2__c}
+- Total CO₂ Emitted (kg): {!$Input:Project__c.Total_CO2_Used__c}
+- CO₂ Saved (kg): {!$Input:Project__c.CO2_Saved__c}
+- Progress (%): {!$Input:Project__c.Progress_Percentage__c}
+- Status: {!$Input:Project__c.Status__c}
+- Description: {!$Input:Project__c.Description__c}
+
+Write a concise summary highlighting the project’s progress toward its CO₂ goal, noting whether it has achieved the goal or not.
+
+</content>
+        <inputs>
+            <apiName>RelatedEntity</apiName>
+            <definition>SOBJECT://Project__c</definition>
+            <referenceName>Input:Project__c</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>8emmrIZ8gyqAFZdFVLVnr2vUKGT9puoRaHrBi7Mk6XA=_1</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__fieldCompletion</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>
